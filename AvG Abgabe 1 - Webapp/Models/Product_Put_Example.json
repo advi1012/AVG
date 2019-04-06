@@ -1,0 +1,16 @@
+{
+  "_id" :  "42",
+  "_name" :  "Alpha",
+  "_description" :  "",
+  "_prefferedsupplier": {
+    "id" : "2",
+    "name " : "wertz",
+    "email" : "-",
+    "address" : "-",
+    "phone": "-" 
+  }, 
+  "_current_stock" : 0, 
+  "color" :  ,
+  "_price" :  2,
+  
+}

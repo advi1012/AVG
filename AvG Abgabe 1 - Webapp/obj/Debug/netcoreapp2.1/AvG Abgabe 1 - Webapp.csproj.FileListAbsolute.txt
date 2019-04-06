@@ -1,0 +1,14 @@
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\bin\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.deps.json
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\bin\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.runtimeconfig.json
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\bin\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.runtimeconfig.dev.json
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\bin\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.dll
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\bin\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.pdb
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\obj\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.csprojAssemblyReference.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\obj\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.csproj.CoreCompileInputs.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\obj\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.RazorAssemblyInfo.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\obj\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.RazorAssemblyInfo.cs
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\obj\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.AssemblyInfoInputs.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\obj\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.AssemblyInfo.cs
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\obj\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.RazorTargetAssemblyInfo.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\obj\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.dll
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG Abgabe 1 - Webapp\obj\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.pdb
