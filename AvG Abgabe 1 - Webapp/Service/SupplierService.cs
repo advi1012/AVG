@@ -29,12 +29,12 @@ namespace AvG_Abgabe_1___Webapp.Service
         public Product findProductById(string id)
         {
             return new Product(id, new Supplier(System.Guid.NewGuid().ToString(),
-                "Muster", "MusterMail", " 07231 4252567", "Muster-Adresse"),Color.green, 12.0, "Mocking", "", 1);
+                "Muster", "MusterMail", "+49 89 123456 789", "Muster-Adresse"),Color.green, 12.0, "Mocking", "", 1);
         }
 
         public Supplier findById(string id)
         {
-            return new Supplier(id, "Beta", "MusterMail", " 07231 4252567", "Muster-Adresse");
+            return new Supplier(id, "Beta", "MusterMail", "+49 89 123456 789", "Muster-Adresse");
         }
         
         public async Task<List<Supplier>> findAllPreferredSuppliers()

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using AvG___Abgabe_1.Model;
+using AvG_Abgabe_1.Model;
 using Popups;
 
 namespace AvG___Abgabe_1

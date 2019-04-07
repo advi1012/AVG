@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AvG_Abgabe_1.Model
 {
@@ -16,19 +12,25 @@ namespace AvG_Abgabe_1.Model
         private string _description;
         private int _current_stock;
 
+        [Required]
+        [RegularExpression(Supplier.ID_REGEX)]
         public string id { get { return this._id;  } private set { this._id = value;  } }
 
         public Supplier prefferedSupplier { get { return this._prefferedsupplier; } private set { this._prefferedsupplier = value;  } }
 
-        
         public Color color { get { return this._color;  } private set { this._color = value; } }
 
+        // price darf nicht negativ sein
+        [Range(0,double.MaxValue)]
         public double price { get { return this._price;  } private set { this._price = value; } }
 
+        [Required]
         public string name { get { return this._name;  } private set { this._name = value;  } }
 
         public string description { get { return this._description; } private set { this._description = value; } }
 
+        // currrentStock darf nicht negativ sein
+        [Range(0, int.MaxValue)]
         public int currentStock { get { return this._current_stock; } private set { this._current_stock = value; } }
 
         public Product(string id, Supplier prefferedSupplier, Color color,

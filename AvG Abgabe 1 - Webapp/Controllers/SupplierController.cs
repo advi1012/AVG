@@ -70,7 +70,7 @@ namespace AvG_Abgabe_1___Webapp.Controllers
             // dann noch in DB speichern/ commit falls vorhander
             // ...
             // BadRequest() einbauen, falls das Product c fehlerhaft ist
-
+            
             return NoContent();
         }
     }

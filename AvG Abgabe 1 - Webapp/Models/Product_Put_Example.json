@@ -1,16 +1,15 @@
 {
-  "_id" :  "42",
-  "_name" :  "Alpha",
-  "_description" :  "",
-  "_prefferedsupplier": {
-    "id" : "2",
-    "name " : "wertz",
-    "email" : "-",
-    "address" : "-",
-    "phone": "-" 
-  }, 
-  "_current_stock" : 0, 
-  "color" :  ,
-  "_price" :  2,
-  
+  "id": "00000000-0000-0000-0000-000000000001",
+  "name": "Alpha",
+  "description": "",
+  "prefferedsupplier": {
+    "id": "00000000-0000-0000-0000-000000000001",
+    "name": "Wertz",
+    "email": "Mustermail@web.de",
+    "address": "Karlsruhe",
+    "phone": "+49 89 123456 789"
+  },
+  "currentStock": 0,
+  "color": "red",
+  "price": 2
 }
