@@ -18,9 +18,9 @@ namespace AvG_Abgabe_1___Webapp.Service
 
     // Mocking Service Klasse
     // Implementierung fehlt noch !!
-    public class SupplierService : ISupplierService
+    public class SupplierServiceMock : ISupplierService
     {
-        public SupplierService()
+        public SupplierServiceMock()
         {
 
 
@@ -28,8 +28,7 @@ namespace AvG_Abgabe_1___Webapp.Service
 
         public Product findProductById(string id)
         {
-            return new Product(id, new Supplier(System.Guid.NewGuid().ToString(),
-                "Muster", "MusterMail", "+49 89 123456 789", "Muster-Adresse"),Color.green, 12.0, "Mocking", "", 1);
+            return new Product(id, "00000000-0000-0000-0000-000000000001", Color.green, 12.0, "Mocking", "", 1);
         }
 
         public Supplier findById(string id)

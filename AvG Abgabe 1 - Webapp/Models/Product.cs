@@ -7,7 +7,7 @@ namespace AvG_Abgabe_1___Webapp.Model
     public class Product
     {
         private string _id;
-        private Supplier _prefferedsupplier;
+        private string _prefferedsupplier;
         private string _name;
         private double _price;
         private Color _color;
@@ -18,7 +18,7 @@ namespace AvG_Abgabe_1___Webapp.Model
         [RegularExpression(Supplier.ID_REGEX)]
         public string id { get { return this._id;  } private set { this._id = value;  } }
 
-        public Supplier prefferedSupplier { get { return this._prefferedsupplier; } private set { this._prefferedsupplier = value;  } }
+        public string prefferedSupplier { get { return this._prefferedsupplier; } private set { this._prefferedsupplier = value;  } }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public Color color { get { return this._color;  } private set { this._color = value; } }
@@ -36,7 +36,7 @@ namespace AvG_Abgabe_1___Webapp.Model
         [Range(0, int.MaxValue)]
         public int currentStock { get { return this._current_stock; } private set { this._current_stock = value; } }
 
-        public Product(string id, Supplier prefferedSupplier, Color color,
+        public Product(string id, string prefferedSupplier, Color color,
             double price, string name, string description, int currentStock)
         {
             _id = id;
@@ -51,7 +51,7 @@ namespace AvG_Abgabe_1___Webapp.Model
         public override string ToString()
         {
             string result = $"Product[ id = {this.id}, name = {this.name}, description = {this.description}, " +
-                $"preffered_Supplier = Supplier[ name = {this.prefferedSupplier.name}, id = {this.prefferedSupplier.id} ], " +
+                $"preffered_Supplier = {this.prefferedSupplier}" +
                 $"current_Stock = {this._current_stock}, color = {this.color},  price = {this.color}]";
             return result;
         }

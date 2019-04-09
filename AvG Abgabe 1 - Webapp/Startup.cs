@@ -28,7 +28,7 @@ namespace AvG_Abgabe_1___Webapp
         {
             // neben AddTransient gibt es noch AddScoped and AddSingleton
             // Serviceklasse als Singleton registrieren, um Zustandslosigkeit zu erreichen
-            services.AddTransient<ISupplierService, SupplierService>();
+            services.AddTransient<ISupplierService, SupplierServiceMock>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

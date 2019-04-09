@@ -22,16 +22,21 @@ namespace AvG_Abgabe_1___Webapp.Controllers
             _supplierservice = supplierservice;
         }
 
-        // GET: api/Supplier
-        // Routing für LIST(Suppliers) findAllPreferredSuppliers()
-        // Routing für Supplier findPreferredSupplier(Product p) über Queryparameter << ?id=... >>
+        /// <summary>
+        /// implementiert die Httpmethode GET: https://localhost:44337/Supplier
+        /// Routing für LIST(Suppliers) findAllPreferredSuppliers()
+        /// 
+        /// Bis jetzt mögliche Queryparameter << ?product_id=... >>
+        /// Routing für Supplier findPreferredSupplier(Product p)
+        /// Beispiel: https://localhost:44337/Supplier?product_id=100
+        /// </summary>
+        /// <returns> Statuscode 200 OK, im Fehelerfall Statuscode 404 Not Found </returns>
         [HttpGet(Name = "findAllPreferredSuppliers")]
         public async Task<ActionResult<IEnumerable<Supplier>>> Get()
         {
-            // hier ist die Id vom Produkt gemeint
-            // Verbesserungsvorschläge sehr wünschenswert
-            var queryParam = Request.Query["id"].ToString();
-            if(String.IsNullOrEmpty(queryParam))
+            var queryParam = Request.Query["product_id"].ToString();
+            // falls keine oder falsche Queryparameter angegeben werden: Gib alle zurück
+            if (String.IsNullOrEmpty(queryParam))
             {
                 var list = await _supplierservice.findAllPreferredSuppliers();
                 if (list != null)
@@ -54,24 +59,37 @@ namespace AvG_Abgabe_1___Webapp.Controllers
             return NotFound();
         }
 
-        // UPDATE: api/Supplier/{id}
-        // Routing für void setPreferredSupplierForProduct(Supplier s, Product c)
+        /// <summary>
+        /// implementiert die Httpmethode PUT: https://localhost:44337/Supplier/00000000-0000-0000-0000-000000000001
+        /// </summary>
+        /// <param name="id"> Id des PreferredSuppliers, um diesen in das Product einzutragen </param>
+        /// <param name="c"> Im Body des PUT-Requests, zu aktualisierendes Product </param>
+        /// <returns> Status Code 204 Created, andernfalls 400 BadRequest </returns>
         [HttpPut("{id}")]
 
         public async Task<ActionResult<NoContentResult>> Put(string id, [FromBody] Product c)
         {
-            Supplier s = _supplierservice.findById(id);
+            // Exceptionhandling: Im Fehlerfall soll der Client nur den Statuscode 400 BadRequest sehen.
+            try
+            {
+                Supplier s = _supplierservice.findById(id);
+                if (c == null)
+                {
+                    return BadRequest();
+                }
+                _supplierservice.setPreferredSupplierForProduct(s, c);
 
-            if(c == null)
+                return NoContent();
+            } catch (UnknownSupplierException sup)
+            {
+                return BadRequest(sup.Message);
+            } catch (UnknownProductException pro)
+            {
+                return BadRequest(pro.Message);
+            } catch (Exception e)
             {
                 return BadRequest();
-            } 
-            _supplierservice.setPreferredSupplierForProduct(s, c);
-            // dann noch in DB speichern/ commit falls vorhander
-            // ...
-            // BadRequest() einbauen, falls das Product c fehlerhaft ist
-            
-            return NoContent();
+            }
         }
     }
 }
