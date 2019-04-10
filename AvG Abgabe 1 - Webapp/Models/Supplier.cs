@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using AvG_Abgabe_1___Webapp.Controllers;
 
 namespace AvG_Abgabe_1___Webapp.Model
 {
@@ -13,14 +15,18 @@ namespace AvG_Abgabe_1___Webapp.Model
         private string _email;
         private string _phone;
         private string _address;
+        // technische Daten
+        private List<LinkDto> _itemLinks = new List<LinkDto>();
+        private List<LinkDto> _singleLinks = new List<LinkDto>();
+        private byte[] _version;
 
         [Required]
-        [RegularExpression(ID_REGEX)]
+        [RegularExpression(Constants.ID_REGEX)]
         public string id { get { return this._id; } private set { this._id = value; } }
 
         [Required]
         [StringLength(maximumLength: 40, MinimumLength = 4)]
-        [RegularExpression(NAME_REGEX)]
+        [RegularExpression(Constants.NAME_REGEX)]
         public string name { get { return this._name; } private set { this._name = value; } }
 
 
@@ -33,6 +39,16 @@ namespace AvG_Abgabe_1___Webapp.Model
 
         [StringLength(maximumLength: 40, MinimumLength = 4)]
         public string address { get { return this._address;  } private set { this._address = value; } }
+
+        // technische Getter/ Setter
+
+        public List<LinkDto> itemLinks { get { return this._itemLinks; } private set { this._itemLinks = value; } }
+
+        public List<LinkDto> singleLinks { get { return this._singleLinks; } private set { this._singleLinks = value; } }
+
+        [ConcurrencyCheck]
+        [Timestamp]
+        public byte[] version { get { return this._version; } private set { this._version = value; } }
 
         public Supplier(string id, string name, string email, string phone, string address)
         {
@@ -49,9 +65,5 @@ namespace AvG_Abgabe_1___Webapp.Model
                 $"mail = {this.email} ]";  
             return result;
         }
-
-        // VERBESSERUNG: Templatestrings benutzen
-        const string NAME_REGEX = "[A-ZÄÖÜ][a-zäöüß]+(-[A-ZÄÖÜ][a-zäöüß]+)?";
-        public const string ID_REGEX = "[\\dA-Fa-f]{8}-[\\dA-Fa-f]{4}-[\\dA-Fa-f]{4}-[\\dA-Fa-f]{4}-[\\dA-Fa-f]{12}";
     }
 }

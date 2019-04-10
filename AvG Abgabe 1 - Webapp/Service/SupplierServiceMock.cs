@@ -6,16 +6,6 @@ using AvG_Abgabe_1___Webapp.Model;
 
 namespace AvG_Abgabe_1___Webapp.Service
 {
-    public interface ISupplierService
-    {
-        Task<List<Supplier>> findAllPreferredSuppliers();
-        Task<Supplier> findPreferredSupplier(Product p);
-        void setPreferredSupplierForProduct(Supplier s, Product c);
-        //Hilfsfunktionen
-        Product findProductById(string Id);
-        Supplier findById(string Id);
-    }
-
     // Mocking Service Klasse
     // Implementierung fehlt noch !!
     public class SupplierServiceMock : ISupplierService
@@ -36,6 +26,16 @@ namespace AvG_Abgabe_1___Webapp.Service
             return new Supplier(id, "Beta", "MusterMail", "+49 89 123456 789", "Muster-Adresse");
         }
         
+        public Supplier Create(Supplier supplier)
+        {
+            return new Supplier("00000000-0000-0000-0000-000000000001", "Beta", "MusterMail", "+49 89 123456 789", "Muster-Adresse");
+        }
+
+        public void Delete(string id)
+        {
+
+        }
+
         public async Task<List<Supplier>> findAllPreferredSuppliers()
         {
             List<Supplier> resultMock = new List<Supplier>();

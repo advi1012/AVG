@@ -15,7 +15,7 @@ namespace AvG_Abgabe_1___Webapp.Model
         private int _current_stock;
 
         [Required]
-        [RegularExpression(Supplier.ID_REGEX)]
+        [RegularExpression(Constants.ID_REGEX)]
         public string id { get { return this._id;  } private set { this._id = value;  } }
 
         public string prefferedSupplier { get { return this._prefferedsupplier; } private set { this._prefferedsupplier = value;  } }

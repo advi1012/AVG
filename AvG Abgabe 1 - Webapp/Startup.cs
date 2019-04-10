@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using AvG_Abgabe_1___Webapp.Service;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
+
 
 namespace AvG_Abgabe_1___Webapp
 {
@@ -28,7 +31,14 @@ namespace AvG_Abgabe_1___Webapp
         {
             // neben AddTransient gibt es noch AddScoped and AddSingleton
             // Serviceklasse als Singleton registrieren, um Zustandslosigkeit zu erreichen
-            services.AddTransient<ISupplierService, SupplierServiceMock>();
+            services.AddSingleton<ISupplierService, SupplierServiceMock>();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddScoped<IUrlHelper>(x => {
+                var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
+                var factory = x.GetRequiredService<IUrlHelperFactory>();
+                return factory.GetUrlHelper(actionContext);
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
