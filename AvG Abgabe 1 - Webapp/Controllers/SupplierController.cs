@@ -39,6 +39,7 @@ namespace AvG_Abgabe_1___Webapp.Controllers
         {
             var queryParam1 = Request.Query["product_id"].ToString();
             var queryParam2 = Request.Query["id"].ToString();
+            var requestedEtag = Request.Headers["If-None-Match"];
 
             // falls ?product_id eingegeben wurde: Suche nach Supplier über das Produkt mit dieser Id
             if (!String.IsNullOrEmpty(queryParam1) && Request.Query.Count() == 1) {
@@ -46,11 +47,8 @@ namespace AvG_Abgabe_1___Webapp.Controllers
                 if (product != null)
                 {
                     var result = await _supplierservice.findPreferredSupplier(product);
-                    if (Request.Headers["ifNoneMatch"] == result.version)
-                    {
-                       return StatusCode(304);
-                    } 
-                    return Ok(CreateSingleLinksForSupplier(result));
+                    var success = SupplierToOk(requestedEtag, result) as ActionResult;
+                    return success;
                 }
 
                 return NotFound();
@@ -59,10 +57,11 @@ namespace AvG_Abgabe_1___Webapp.Controllers
             // falls ?id eingegeben wurde: Suche nach Supplier mit dieser Id
             if (!String.IsNullOrEmpty(queryParam2) && Request.Query.Count() == 1)
             {
-                var supplier = _supplierservice.findById(queryParam1);
+                var supplier = _supplierservice.findById(queryParam2);
                 if (supplier != null)
                 {
-                    return Ok(CreateSingleLinksForSupplier(supplier));
+                    var success = SupplierToOk(requestedEtag, supplier) as ActionResult;
+                    return success;
                 }
 
                 return NotFound();
@@ -144,12 +143,12 @@ namespace AvG_Abgabe_1___Webapp.Controllers
         private Supplier CreateItemLinksForSupplier(Supplier supplier)
         {
             var idObj = new { id = supplier.id };
-            supplier.itemLinks.Add(
+            supplier.links.Add(
                 new LinkDto(this._urlHelper.Link(nameof(this.GetSupplier), null),
-                Constants.HREF,
+                Constants.LIST,
                 Constants.GET));
 
-            supplier.itemLinks.Add(
+            supplier.links.Add(
                 new LinkDto(this._urlHelper.Link(nameof(this.GetSupplier), idObj),
                 Constants.SELF,
                 Constants.GET));
@@ -160,33 +159,53 @@ namespace AvG_Abgabe_1___Webapp.Controllers
         private Supplier CreateSingleLinksForSupplier(Supplier supplier)
         {
             var idObj = new { id = supplier.id };
-            supplier.singleLinks.Add(
+            supplier.links.Add(
                new LinkDto(this._urlHelper.Link(nameof(this.GetSupplier), idObj),
                Constants.SELF,
                Constants.GET));
 
-            supplier.singleLinks.Add(
+            supplier.links.Add(
                new LinkDto(this._urlHelper.Link(nameof(this.GetSupplier), null),
-               Constants.HREF,
+               Constants.LIST,
                Constants.GET));
 
 
-            supplier.singleLinks.Add(
+            supplier.links.Add(
                 new LinkDto(this._urlHelper.Link(nameof(this.PutSupplier), idObj),
                 Constants.UPDATE,
                 Constants.PUT));
 
-            supplier.singleLinks.Add(
+            supplier.links.Add(
                 new LinkDto(this._urlHelper.Link(nameof(this.PostSupplier), idObj),
                 Constants.ADD,
                 Constants.POST));
 
-            supplier.singleLinks.Add(
+            supplier.links.Add(
                 new LinkDto(this._urlHelper.Link(nameof(this.DeleteSupplier), idObj),
                 Constants.REMOVE,
                 Constants.DELETE));
 
             return supplier;
         }
+
+        // Aktualisiere Etag des Clients, um ggfs Änderungen an den Daten zu erkennen
+        private Supplier ETagHelper(Supplier supplier)
+        {
+            this.HttpContext.Response.Headers["If-None-Match"] = "{";
+            this.HttpContext.Response.Headers["If-None-Match"] += $"\"\\\"{supplier.version}\\\"\"";
+            this.HttpContext.Response.Headers["If-None-Match"] += "}";
+            return supplier;
+        }
+
+        // handelt den Fall << Statuscode 304 oder 200 >> ab
+        private object SupplierToOk(string requestedEtag ,Supplier supplier)
+        {
+            //// Primitive Implementierung, Verbesserung willkommen!!!
+            if (requestedEtag.Replace("\"", "").Replace("\\", "") == supplier.version.ToString())
+            {
+                return StatusCode(304);
+            }
+            return Ok(CreateSingleLinksForSupplier(ETagHelper(supplier)));
+        } 
     }
 }

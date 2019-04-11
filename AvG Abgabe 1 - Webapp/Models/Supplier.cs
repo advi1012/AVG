@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using AvG_Abgabe_1___Webapp.Controllers;
+using Newtonsoft.Json;
 
 namespace AvG_Abgabe_1___Webapp.Model
 {
@@ -16,9 +17,8 @@ namespace AvG_Abgabe_1___Webapp.Model
         private string _phone;
         private string _address;
         // technische Daten
-        private List<LinkDto> _itemLinks = new List<LinkDto>();
-        private List<LinkDto> _singleLinks = new List<LinkDto>();
-        private byte[] _version;
+        private List<LinkDto> _links = new List<LinkDto>();
+        private int _version;
 
         [Required]
         [RegularExpression(Constants.ID_REGEX)]
@@ -42,13 +42,11 @@ namespace AvG_Abgabe_1___Webapp.Model
 
         // technische Getter/ Setter
 
-        public List<LinkDto> itemLinks { get { return this._itemLinks; } private set { this._itemLinks = value; } }
-
-        public List<LinkDto> singleLinks { get { return this._singleLinks; } private set { this._singleLinks = value; } }
+        public List<LinkDto> links { get { return this._links; } private set { this._links = value; } }
 
         [ConcurrencyCheck]
-        [Timestamp]
-        public byte[] version { get { return this._version; } private set { this._version = value; } }
+        [JsonIgnore]
+        public int version { get { return this._version; } private set { this._version = value; } }
 
         public Supplier(string id, string name, string email, string phone, string address)
         {

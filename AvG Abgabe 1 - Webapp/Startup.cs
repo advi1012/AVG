@@ -33,12 +33,12 @@ namespace AvG_Abgabe_1___Webapp
             // Serviceklasse als Singleton registrieren, um Zustandslosigkeit zu erreichen
             services.AddSingleton<ISupplierService, SupplierServiceMock>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-            services.AddScoped<IUrlHelper>(x => {
+            services.AddScoped<IUrlHelper>(x =>
+            {
                 var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
                 var factory = x.GetRequiredService<IUrlHelperFactory>();
                 return factory.GetUrlHelper(actionContext);
             });
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
