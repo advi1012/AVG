@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AvG_Abgabe_1___Webapp.Model;
 using AvG_Abgabe_1___Webapp.Service;
-using System.Web;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,9 +36,10 @@ namespace AvG_Abgabe_1___Webapp.Controllers
         [HttpGet(Name = nameof(GetSupplier))]
         public async Task<ActionResult<IEnumerable<Supplier>>> GetSupplier()
         {
-            var queryParam1 = Request.Query["product_id"].ToString();
-            var queryParam2 = Request.Query["id"].ToString();
-            var requestedEtag = Request.Headers["If-None-Match"];
+            var queryParam1 = Request.Query[Constants.product_idPath].ToString();
+            var queryParam2 = Request.Query[Constants.idPath].ToString();
+            var requestedEtag = Request.Headers[Constants.IF_NONE_MATCH];
+            // var lastModified = Request.Headers[Constants.IF_MODIFIED_SINCE];
 
             // falls ?product_id eingegeben wurde: Suche nach Supplier über das Produkt mit dieser Id
             if (!String.IsNullOrEmpty(queryParam1) && Request.Query.Count() == 1) {
@@ -81,25 +81,33 @@ namespace AvG_Abgabe_1___Webapp.Controllers
         }
 
         /// <summary>
-        /// implementiert die Httpmethode PUT: https://localhost:44337/Supplier/00000000-0000-0000-0000-000000000001
+        /// implementiert die Httpmethode PUT: void setPreferredSupplierForProduct(Supplier s, Product c)
+        /// throws UnknownSupplierException, UnknownProductException
+        /// Beispiel: https://localhost:44337/Supplier/00000000-0000-0000-0000-000000000001
         /// </summary>
         /// <param name="id"> Id des PreferredSuppliers, um diesen in das Product einzutragen </param>
         /// <param name="c"> Im Body des PUT-Requests, zu aktualisierendes Product </param>
         /// <returns> Status Code 204 Created, andernfalls 400 BadRequest </returns>
         [HttpPut("{id}", Name = nameof(PutSupplier))]
-
         public async Task<ActionResult<NoContentResult>> PutSupplier(string id, [FromBody] Product c)
         {
             // Exceptionhandling: Im Fehlerfall soll der Client nur den Statuscode 400 BadRequest bzw  Not Found 404 sehen.
             try
             {
                 Supplier s = _supplierservice.findById(id);
+                // nur die Versionszahl interessiert uns, der Rest soll entfernt werden
+                var version = Request.Headers[Constants.IF_MATCH].ToString().Replace("\"", "").Replace("\\", "");
+                // optimistische Synchronisation benötigt "If-Match" im Request-Header
+                if (String.IsNullOrEmpty(version) || version != s.version.ToString())
+                {
+                    return StatusCode(412, Constants.PRECONDTION_FAILED);
+                }
                 if (c == null)
                 {
                     return BadRequest();
                 }
                 _supplierservice.setPreferredSupplierForProduct(s, c);
-
+                ETagBuilder(s);
                 return NoContent();
             } catch (UnknownSupplierException sup)
             {
@@ -124,7 +132,8 @@ namespace AvG_Abgabe_1___Webapp.Controllers
             } catch(Exception e) {
                 return BadRequest();
             }
-            return CreatedAtAction(nameof(PostSupplier), new { id = supplier.id }, supplier);
+            Supplier updatedResult = result.Clone(0, DateTime.Now, DateTime.Now);
+            return CreatedAtAction(nameof(PostSupplier), new { id = updatedResult.id }, updatedResult);
         }
 
         [HttpDelete("{id}", Name = nameof(DeleteSupplier))]
@@ -140,6 +149,7 @@ namespace AvG_Abgabe_1___Webapp.Controllers
 
             return NoContent();
         }
+
         private Supplier CreateItemLinksForSupplier(Supplier supplier)
         {
             var idObj = new { id = supplier.id };
@@ -197,13 +207,25 @@ namespace AvG_Abgabe_1___Webapp.Controllers
             return supplier;
         }
 
-        // handelt den Fall << Statuscode 304 oder 200 >> ab
-        private object SupplierToOk(string requestedEtag ,Supplier supplier)
+        // Aktualisiere Version in der Datenbank
+        private Supplier ETagBuilder(Supplier supplier)
         {
-            //// Primitive Implementierung, Verbesserung willkommen!!!
-            if (requestedEtag.Replace("\"", "").Replace("\\", "") == supplier.version.ToString())
+            // Nach erfolgreichen Update Etag um 1 erhöhen, modifiedSince updaten
+            Supplier result = supplier.Clone(supplier.version + 1, DateTime.Now);
+            return result;
+        }
+
+        // handelt den Fall << Statuscode 304 oder 200 >> ab
+        private object SupplierToOk(string requestedEtag, Supplier supplier)
+        {
+            // Wenn im Header diese Parameter nicht vorhanden sind, dann Ok 200 zurückgeben
+            if(!String.IsNullOrEmpty(requestedEtag))
             {
-                return StatusCode(304);
+                // Primitive Implementierung, Verbesserung willkommen!!!
+                if (requestedEtag.Replace("\"", "").Replace("\\", "") == supplier.version.ToString())
+                {
+                    return StatusCode(304, Constants.NOT_MODIFIED);
+                }
             }
             return Ok(CreateSingleLinksForSupplier(ETagHelper(supplier)));
         } 

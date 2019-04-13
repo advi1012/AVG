@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "3b6875c0-a8e1-462c-b52d-575f3bb0d006",
+		"name": "AVG-Abgabe 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://localhost:44337/Supplier/00000000-0000-0000-0000-000000000009",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "\"\\\"0\\\"\"",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"00000000-0000-0000-0000-000000000001\",\n  \"name\": \"Alpha\",\n  \"description\": \"\",\n  \"prefferedsupplier\": \"00000000-0000-0000-0000-000000000001\",\n  \"currentStock\": 0,\n  \"color\": \"red\",\n  \"price\": 2\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44337/Supplier/00000000-0000-0000-0000-000000000009",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"Supplier",
+						"00000000-0000-0000-0000-000000000009"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": ""
+						}
+					]
+				},
+				"description": "void setPreferredSupplierForProduct(Supplier s, Product c)\r\nthrows UnknownSupplierException, UnknownProductException"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "\"\\\"0\\\"\"",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "If-None-Match",
+						"value": "\"\\\"0\\\"\"",
+						"type": "text"
+					},
+					{
+						"key": "If-Modified-Since",
+						"value": "01.01.0001 00:00:00",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"Supplier"
+					],
+					"query": [
+						{
+							"key": "product_id",
+							"value": "00000000-0000-0000-0000-000000000009"
+						}
+					]
+				},
+				"description": "Supplier findPreferredSupplier(Product p)\nmit Statuscode 304"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "\"\\\"0\\\"\"",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "If-None-Match",
+						"value": "\"\\\"0\\\"\"",
+						"type": "text"
+					},
+					{
+						"key": "If-Modified-Since",
+						"value": "01.01.0001 00:00:01",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"Supplier"
+					],
+					"query": [
+						{
+							"key": "product_id",
+							"value": "00000000-0000-0000-0000-000000000009"
+						}
+					]
+				},
+				"description": "Supplier findPreferredSupplier(Product p)\nmit Statuscode 200"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44337/Supplier",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "\"\\\"0\\\"\"",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "If-None-Match",
+						"value": "\"\\\"0\\\"\"",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "If-Modified-Since",
+						"value": "01.01.0001 00:00:01",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44337/Supplier",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"Supplier"
+					]
+				},
+				"description": "LIST(Suppliers) findAllPreferredSuppliers"
+			},
+			"response": []
+		}
+	]
+}

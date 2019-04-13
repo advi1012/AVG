@@ -7,7 +7,7 @@ namespace AvG_Abgabe_1___Webapp.Model
     public class Product
     {
         private string _id;
-        private string _prefferedsupplier;
+        private string _preferredsupplier;
         private string _name;
         private double _price;
         private Color _color;
@@ -18,7 +18,7 @@ namespace AvG_Abgabe_1___Webapp.Model
         [RegularExpression(Constants.ID_REGEX)]
         public string id { get { return this._id;  } private set { this._id = value;  } }
 
-        public string prefferedSupplier { get { return this._prefferedsupplier; } private set { this._prefferedsupplier = value;  } }
+        public string prefferedSupplier { get { return this._preferredsupplier; } private set { this._preferredsupplier = value;  } }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public Color color { get { return this._color;  } private set { this._color = value; } }
@@ -42,7 +42,7 @@ namespace AvG_Abgabe_1___Webapp.Model
             _id = id;
             _name = name;
             _description = description;
-            _prefferedsupplier = prefferedSupplier;
+            _preferredsupplier = prefferedSupplier;
             _current_stock = currentStock;
             _color = color;
             _price = price;
