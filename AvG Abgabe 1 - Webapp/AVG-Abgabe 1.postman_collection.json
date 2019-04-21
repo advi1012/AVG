@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "https://localhost:44337/Supplier/00000000-0000-0000-0000-000000000009",
+			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000001",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -48,7 +48,7 @@
 			"response": []
 		},
 		{
-			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000001",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -101,7 +101,7 @@
 			"response": []
 		},
 		{
-			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000002",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -199,6 +199,170 @@
 					]
 				},
 				"description": "LIST(Suppliers) findAllPreferredSuppliers"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				},
+				"description": "Get Request zu einem nicht vorhandenen Supplier"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000001",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Produkt_2\",\n  \"description\": \"Ich bin Produkt_2\",\n  \"preferredsupplier\": \"00000000-0000-0000-0000-000000000000\",\n  \"currentStock\": 50,\n  \"color\": \"blue\",\n  \"price\": 43.0\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44337/Supplier/00000000-0000-0000-0000-000000000009?product_id=00000000-0000-0000-0000-000000000001",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"Supplier",
+						"00000000-0000-0000-0000-000000000009"
+					],
+					"query": [
+						{
+							"key": "product_id",
+							"value": "00000000-0000-0000-0000-000000000001"
+						}
+					]
+				},
+				"description": "Put Request zu einem nicht vorhandenen Supplier"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Produkt_2\",\n  \"description\": \"Ich bin Produkt_2\",\n  \"preferredsupplier\": \"00000000-0000-0000-0000-000000000000\",\n  \"currentStock\": 50,\n  \"color\": \"blue\",\n  \"price\": 43.0\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44337/Supplier/00000000-0000-0000-0000-000000000000?product_id=00000000-0000-0000-0000-000000000009",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"Supplier",
+						"00000000-0000-0000-0000-000000000000"
+					],
+					"query": [
+						{
+							"key": "product_id",
+							"value": "00000000-0000-0000-0000-000000000009"
+						}
+					]
+				},
+				"description": "Put Request ohne If-Match Header"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-Match",
+						"value": "\"\\\"0\\\"\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Produkt_2\",\n  \"description\": \"Ich bin Produkt_2\",\n  \"preferredsupplier\": \"00000000-0000-0000-0000-000000000000\",\n  \"currentStock\": 50,\n  \"color\": \"blue\",\n  \"price\": 43.0\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44337/Supplier/00000000-0000-0000-0000-000000000000?product_id=00000000-0000-0000-0000-000000000009",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"Supplier",
+						"00000000-0000-0000-0000-000000000000"
+					],
+					"query": [
+						{
+							"key": "product_id",
+							"value": "00000000-0000-0000-0000-000000000009"
+						}
+					]
+				},
+				"description": "Put Request mit If-Match Header, aber mit nicht vorrhandenes Produkt"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000009",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"Supplier"
+					],
+					"query": [
+						{
+							"key": "product_id",
+							"value": "00000000-0000-0000-0000-000000000009"
+						}
+					]
+				}
 			},
 			"response": []
 		}

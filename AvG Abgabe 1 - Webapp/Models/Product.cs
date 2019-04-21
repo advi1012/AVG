@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AvG_Abgabe_1___Webapp.Model
 {
@@ -14,11 +15,12 @@ namespace AvG_Abgabe_1___Webapp.Model
         private string _description;
         private int _current_stock;
 
-        [Required]
         [RegularExpression(Constants.ID_REGEX)]
+        [JsonIgnore]
         public string id { get { return this._id;  } private set { this._id = value;  } }
 
-        public string prefferedSupplier { get { return this._preferredsupplier; } private set { this._preferredsupplier = value;  } }
+        [ForeignKey("id")]
+        public string preferredSupplier { get { return this._preferredsupplier; } private set { this._preferredsupplier = value;  } }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public Color color { get { return this._color;  } private set { this._color = value; } }
@@ -36,13 +38,13 @@ namespace AvG_Abgabe_1___Webapp.Model
         [Range(0, int.MaxValue)]
         public int currentStock { get { return this._current_stock; } private set { this._current_stock = value; } }
 
-        public Product(string id, string prefferedSupplier, Color color,
+        public Product(string id, string preferredSupplier, Color color,
             double price, string name, string description, int currentStock)
         {
             _id = id;
             _name = name;
             _description = description;
-            _preferredsupplier = prefferedSupplier;
+            _preferredsupplier = preferredSupplier;
             _current_stock = currentStock;
             _color = color;
             _price = price;
@@ -51,9 +53,21 @@ namespace AvG_Abgabe_1___Webapp.Model
         public override string ToString()
         {
             string result = $"Product[ id = {this.id}, name = {this.name}, description = {this.description}, " +
-                $"preffered_Supplier = {this.prefferedSupplier}" +
+                $"preferred_Supplier = {this.preferredSupplier}" +
                 $"current_Stock = {this._current_stock}, color = {this.color},  price = {this.color}]";
             return result;
+        }
+
+        public Product Clone(string preferredSupplier)
+        {
+            Product Klon = (Product) this.MemberwiseClone();
+
+            if (!string.IsNullOrEmpty(preferredSupplier))
+            {
+                Klon._preferredsupplier = preferredSupplier;
+            }
+
+            return Klon;
         }
     }
 }

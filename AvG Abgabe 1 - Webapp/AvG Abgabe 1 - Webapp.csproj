@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Thrift\" />
+    <Compile Remove="Migrations\20190416101929_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190416101929_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

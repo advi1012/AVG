@@ -34,50 +34,51 @@ namespace AvG_Abgabe_1___Webapp.Controllers
         /// </summary>
         /// <returns> Statuscode 200 OK, im Fehelerfall Statuscode 404 Not Found </returns>
         [HttpGet(Name = nameof(GetSupplier))]
-        public async Task<ActionResult<IEnumerable<Supplier>>> GetSupplier()
+        public ActionResult<IEnumerable<Supplier>> GetSupplier()
         {
             var queryParam1 = Request.Query[Constants.product_idPath].ToString();
             var queryParam2 = Request.Query[Constants.idPath].ToString();
             var requestedEtag = Request.Headers[Constants.IF_NONE_MATCH];
             // var lastModified = Request.Headers[Constants.IF_MODIFIED_SINCE];
-
-            // falls ?product_id eingegeben wurde: Suche nach Supplier über das Produkt mit dieser Id
-            if (!String.IsNullOrEmpty(queryParam1) && Request.Query.Count() == 1) {
-                var product = _supplierservice.findProductById(queryParam1);
-                if (product != null)
+            try
+            {
+                // falls ?product_id eingegeben wurde: Suche nach Supplier über das Produkt mit dieser Id
+                if (!String.IsNullOrEmpty(queryParam1) && Request.Query.Count() == 1)
                 {
-                    var result = await _supplierservice.findPreferredSupplier(product);
+                    var product = _supplierservice.findProductById(queryParam1);
+                    var result = _supplierservice.findPreferredSupplier(product);
                     var success = SupplierToOk(requestedEtag, result) as ActionResult;
                     return success;
                 }
 
-                return NotFound();
-            }
-
-            // falls ?id eingegeben wurde: Suche nach Supplier mit dieser Id
-            if (!String.IsNullOrEmpty(queryParam2) && Request.Query.Count() == 1)
-            {
-                var supplier = _supplierservice.findById(queryParam2);
-                if (supplier != null)
+                // falls ?id eingegeben wurde: Suche nach Supplier mit dieser Id
+                if (!String.IsNullOrEmpty(queryParam2) && Request.Query.Count() == 1)
                 {
+                    var supplier = _supplierservice.findById(queryParam2);
                     var success = SupplierToOk(requestedEtag, supplier) as ActionResult;
                     return success;
                 }
 
-                return NotFound();
-            }
-
-            // falls keine oder falsche Queryparameter angegeben werden: Gib alle zurück (nicht verlangt)
-            var list = await _supplierservice.findAllPreferredSuppliers();
-            if (list != null)
-            {
+                // falls keine oder falsche Queryparameter angegeben werden: Gib alle zurück (nicht verlangt)
+                var list = _supplierservice.findAllPreferredSuppliers();
                 if (list.Count() > 0)
                 {
                     return Ok(list.Select(supplier => CreateItemLinksForSupplier(supplier)));
                 }
-            }
-            return NotFound();
 
+                return NotFound(Constants.UnknownSupplierMessage);
+            } catch (UnknownSupplierException sup)
+            {
+                return NotFound(sup.Message);
+            }
+            catch (UnknownProductException pro)
+            {
+                return NotFound(pro.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, Constants.INTERNAL_SERVER_ERROR);
+            }
         }
 
         /// <summary>
@@ -88,13 +89,18 @@ namespace AvG_Abgabe_1___Webapp.Controllers
         /// <param name="id"> Id des PreferredSuppliers, um diesen in das Product einzutragen </param>
         /// <param name="c"> Im Body des PUT-Requests, zu aktualisierendes Product </param>
         /// <returns> Status Code 204 Created, andernfalls 400 BadRequest </returns>
-        [HttpPut("{id}", Name = nameof(PutSupplier))]
-        public async Task<ActionResult<NoContentResult>> PutSupplier(string id, [FromBody] Product c)
+        [HttpPut(Name = nameof(PutSupplier))]
+        public ActionResult<NoContentResult> PutSupplier([FromBody] Product c)
         {
             // Exceptionhandling: Im Fehlerfall soll der Client nur den Statuscode 400 BadRequest bzw  Not Found 404 sehen.
             try
             {
-                Supplier s = _supplierservice.findById(id);
+                var productId = Request.Query[Constants.product_idPath].ToString();
+                if (String.IsNullOrEmpty(productId))
+                {
+                    throw new UnknownProductException(Constants.ProductNotSpecified);
+                }
+                Supplier s = _supplierservice.findById(c.preferredSupplier);
                 // nur die Versionszahl interessiert uns, der Rest soll entfernt werden
                 var version = Request.Headers[Constants.IF_MATCH].ToString().Replace("\"", "").Replace("\\", "");
                 // optimistische Synchronisation benötigt "If-Match" im Request-Header
@@ -106,7 +112,7 @@ namespace AvG_Abgabe_1___Webapp.Controllers
                 {
                     return BadRequest();
                 }
-                _supplierservice.setPreferredSupplierForProduct(s, c);
+                _supplierservice.setPreferredSupplierForProduct(s, c, productId);
                 ETagBuilder(s);
                 return NoContent();
             } catch (UnknownSupplierException sup)
@@ -115,10 +121,11 @@ namespace AvG_Abgabe_1___Webapp.Controllers
             } catch (UnknownProductException pro)
             {
                 return NotFound(pro.Message);
-            } catch (Exception e)
-            {
-                return BadRequest();
             }
+            //catch (Exception e)
+            //{
+            //    return StatusCode(500, Constants.INTERNAL_SERVER_ERROR);
+            //}
         }
 
         // Standardmäßige HTTP-Methoden (nicht verlangt)

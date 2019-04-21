@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using AvG_Abgabe_1___Webapp.Controllers;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AvG_Abgabe_1___Webapp.Model
 {
@@ -23,8 +24,9 @@ namespace AvG_Abgabe_1___Webapp.Model
         private DateTime _modifiedSince;
         private int _version;
 
-        [Required]
+        [Key]
         [RegularExpression(Constants.ID_REGEX)]
+        [JsonIgnore]
         public string id { get { return this._id; } private set { this._id = value; } }
 
         [Required]
@@ -45,16 +47,20 @@ namespace AvG_Abgabe_1___Webapp.Model
 
         // technische Getter/ Setter
 
+        [NotMapped]
         public List<LinkDto> links { get { return this._links; } private set { this._links = value; } }
 
+        [NotMapped]
         [ConcurrencyCheck]
         [JsonIgnore]
         public int version { get { return this._version; } private set { this._version = value; } }
 
+        [NotMapped]
         [Timestamp]
         [JsonIgnore]
         public DateTime created { get { return this._created; } set { this._created = value; } }
 
+        [NotMapped]
         [Timestamp]
         [JsonIgnore]
         public DateTime modifiedSince { get { return this._modifiedSince; } set { this._modifiedSince = value; } }

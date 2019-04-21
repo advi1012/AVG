@@ -1,9 +1,8 @@
 {
-  "id": "00000000-0000-0000-0000-000000000001",
-  "name": "Alpha",
-  "description": "",
-  "prefferedsupplier": "00000000-0000-0000-0000-000000000001",
-  "currentStock": 0,
-  "color": "red",
-  "price": 2
+  "name": "Produkt_2",
+  "description": "Ich bin Produkt_2",
+  "preferredsupplier": "00000000-0000-0000-0000-000000000000",
+  "currentStock": 50,
+  "color": "blue",
+  "price": 43.0
 }

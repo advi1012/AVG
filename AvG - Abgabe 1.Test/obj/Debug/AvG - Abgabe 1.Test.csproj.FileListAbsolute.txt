@@ -1,0 +1,2 @@
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG - Abgabe 1.Test\obj\Debug\AvG - Abgabe 1.Test.csprojAssemblyReference.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\AvG - Abgabe 1.Test\obj\Debug\AvG - Abgabe 1.Test.csproj.CoreCompileInputs.cache

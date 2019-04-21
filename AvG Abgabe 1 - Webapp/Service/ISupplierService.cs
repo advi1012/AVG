@@ -8,9 +8,9 @@ namespace AvG_Abgabe_1___Webapp.Service
 {
     public interface ISupplierService
     {
-        Task<List<Supplier>> findAllPreferredSuppliers();
-        Task<Supplier> findPreferredSupplier(Product p);
-        void setPreferredSupplierForProduct(Supplier s, Product c);
+        List<Supplier> findAllPreferredSuppliers();
+        Supplier findPreferredSupplier(Product p);
+        void setPreferredSupplierForProduct(Supplier s, Product c, string productId);
         //Hilfsfunktionen
         Product findProductById(string Id);
         Supplier findById(string Id);

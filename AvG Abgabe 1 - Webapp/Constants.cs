@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AvG_Abgabe_1___Webapp
+﻿namespace AvG_Abgabe_1___Webapp
 {
     public class Constants
 {
@@ -30,6 +25,7 @@ namespace AvG_Abgabe_1___Webapp
         // Statuscodes
         public const string PRECONDTION_FAILED = "PRECONDTION_FAILED";
         public const string NOT_MODIFIED = "NOT_MODIFIED";
+        public const string INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR";
 
         // Header-Parameter
         public const string idPath = "id";
@@ -37,5 +33,11 @@ namespace AvG_Abgabe_1___Webapp
         public const string IF_NONE_MATCH = "If-None-Match";
         public const string IF_MATCH = "If-Match";
         public const string IF_MODIFIED_SINCE = "If-Modified-Since";
+
+        // Fehlermeldungen
+        public const string UnknownSupplierMessage = "Supplier not found";
+        public const string UnknownProductMessage = "Product not found";
+        public const string ProductNotSpecified = "Product not specified";
+        public const string ClearingDatabaseFailed = "An error occurred clearing the DB.";
     }
 }
