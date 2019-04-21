@@ -10,6 +10,10 @@ using AvG_Abgabe_1___Webapp.Service;
 
 namespace AvG_Abgabe_1___Webapp.Controllers
 {
+    /// <summary>
+    /// Die Klasse SupplierController beinhaltet sowohl Router (Abbildung von URIs auf Funktionen) 
+    /// als auch Handlerfunktionalität (HTTP-Statuscode, Verarbeitung des Requests, Response zurückliefern...)
+    /// </summary>
     [Route("/Supplier")]
     [ApiController]
     public class SupplierController : ControllerBase
@@ -28,9 +32,9 @@ namespace AvG_Abgabe_1___Webapp.Controllers
         /// implementiert die Httpmethode GET: https://localhost:44337/Supplier
         /// Routing für LIST(Suppliers) findAllPreferredSuppliers()
         /// 
-        /// Bis jetzt mögliche Queryparameter << ?product_id=... >>
+        /// Bis jetzt mögliche Queryparameter << ?product_id=... >>, << ?id=... >>
         /// Routing für Supplier findPreferredSupplier(Product p)
-        /// Beispiel: https://localhost:44337/Supplier?product_id=100
+        /// Beispiel: https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000000
         /// </summary>
         /// <returns> Statuscode 200 OK, im Fehelerfall Statuscode 404 Not Found </returns>
         [HttpGet(Name = nameof(GetSupplier))]
@@ -84,7 +88,7 @@ namespace AvG_Abgabe_1___Webapp.Controllers
         /// <summary>
         /// implementiert die Httpmethode PUT: void setPreferredSupplierForProduct(Supplier s, Product c)
         /// throws UnknownSupplierException, UnknownProductException
-        /// Beispiel: https://localhost:44337/Supplier/00000000-0000-0000-0000-000000000001
+        /// Beispiel: https://localhost:44337/Supplier?product_id=00000000-0000-0000-0000-000000000001
         /// </summary>
         /// <param name="id"> Id des PreferredSuppliers, um diesen in das Product einzutragen </param>
         /// <param name="c"> Im Body des PUT-Requests, zu aktualisierendes Product </param>
@@ -122,10 +126,10 @@ namespace AvG_Abgabe_1___Webapp.Controllers
             {
                 return NotFound(pro.Message);
             }
-            //catch (Exception e)
-            //{
-            //    return StatusCode(500, Constants.INTERNAL_SERVER_ERROR);
-            //}
+            catch (Exception e)
+            {
+                return StatusCode(500, Constants.INTERNAL_SERVER_ERROR);
+            }
         }
 
         // Standardmäßige HTTP-Methoden (nicht verlangt)

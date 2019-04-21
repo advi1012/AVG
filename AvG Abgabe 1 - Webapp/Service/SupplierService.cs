@@ -5,6 +5,9 @@ using AvG_Abgabe_1___Webapp.Model;
 
 namespace AvG_Abgabe_1___Webapp.Service
 {
+    /// <summary>
+    /// Realisierung von ISupplierService, eigentliche Serviceklasse
+    /// </summary>
     public class SupplierService : ISupplierService
     {
         private readonly SupplierContext _supplierContext;
@@ -33,7 +36,11 @@ namespace AvG_Abgabe_1___Webapp.Service
                 _supplierContext.SaveChanges();
             }
         }
-  
+
+        /// <summary>
+        /// implementiert die Anforderung LIST(Suppliers) findAllPreferredSuppliers()
+        /// </summary>
+        /// <returns> eine Liste von Supplier, die mindestens einen Eintrag in preferredSupplier haben </returns>
         public List<Supplier> findAllPreferredSuppliers()
         {
             List<Supplier> result = new List<Supplier>();
@@ -41,12 +48,19 @@ namespace AvG_Abgabe_1___Webapp.Service
             foreach(Product p in allProducts)
             {
                 Supplier s = _supplierContext.Find<Supplier>(p.preferredSupplier);
-                result.Add(s);
-
+                if (!result.Contains(s))
+                {
+                    result.Add(s);
+                }
             }
             return result;
         }
 
+        /// <summary>
+        /// implementiert die Anforderung Supplier findPreferredSupplier(Product p)
+        /// </summary>
+        /// <param name="p"> Das Produkt, welches als Suchkriterium benutzt wird </param>
+        /// <returns> Den Supplier, der von jenem Produkt bevorzugt wird </returns>
         public Supplier findPreferredSupplier(Product p)
         {
 
@@ -65,6 +79,13 @@ namespace AvG_Abgabe_1___Webapp.Service
             
         }
 
+        /// <summary>
+        /// implementiert die Anforderung void setPreferredSupplierForProduct(Supplier s, Product c)
+        /// aus technischen Gründen wurde ein weitere Parameter hinzugefügt (für sinnvolles Routing)
+        /// </summary>
+        /// <param name="s"> Der Supplier, dessen ID in preferredSupplier eingetragen werden soll </param>
+        /// <param name="c"> Das Produkt, das aktualisert werden soll </param>
+        /// <param name="productId"> Die ID des zu aktualisierenden Produkts </param>
         public void setPreferredSupplierForProduct(Supplier s, Product c, string productId)
         {
             var isSupplierThere = _supplierContext.Find<Supplier>(s.id);
@@ -78,6 +99,7 @@ namespace AvG_Abgabe_1___Webapp.Service
                 throw new UnknownProductException(Constants.UnknownProductMessage);
             }
 
+            // TODO: update benutzen
             // Work-around
             // Update wirft Exception...
             _supplierContext.Remove<Product>(isProductThere);

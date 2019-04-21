@@ -6,6 +6,9 @@ using AvG_Abgabe_1___Webapp.Model;
 
 namespace AvG_Abgabe_1___Webapp.Service
 {
+    /// <summary>
+    /// Interface für den Service, für Dependency Injection notwendig, siehe auch Startup.cs
+    /// </summary>
     public interface ISupplierService
     {
         List<Supplier> findAllPreferredSuppliers();

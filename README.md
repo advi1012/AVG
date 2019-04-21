@@ -9,6 +9,12 @@ Alternativ kann auch die graphische Oberfläche genutzt werden (der grüne Pfeil
 Der Server kann geschlossen werden, indem man im oder neben dem System Tray (bei Windows standardmäßig unten rechts auf den Bildschirm) 
 auf das ISS Express Icon rechts klickt und dann Exit wählt. Alternativ kann auch einfach die Projektmappe geschlossen werden.
 
+```
+Hinweis: Da das Zertifikat, welches ISS Express verwendet, selbstsigniert ist, kommt im Browser eine Warnung. Man kann entweder dieses Zertifikat importieren 
+		oder aber auch im Browser auf weiter klicken, wenn die Wranung kommt. Zum Testen der Requests benutzt man am Besten Postman, da auch die Besipiel Requests 
+		als postman_collection.json-Datei exportiert wurden. 
+```
+
 ## Features
 Die REST-Schnittstelle realisiert folgende Funktionalitäten mit Hilfe des asp.net core Frameworks:
 ```
