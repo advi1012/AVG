@@ -16,25 +16,6 @@ namespace AvG_Abgabe_1___Webapp.Service
         public SupplierService(SupplierContext supplierContext)
         {
             _supplierContext = supplierContext;
-
-            // Testdaten werden den Tabellen hinzugefügt, falls diese leer sind
-            if (_supplierContext.Supplier.Count() == 0)
-            {
-                _supplierContext.Supplier.Add(new Supplier("00000000-0000-0000-0000-000000000000", "Alpha", "Alpha@MusterMail.com", "+49 89 123456 789", "Muster-Adresse"));
-                _supplierContext.Supplier.Add(new Supplier("00000000-0000-0000-0000-000000000001", "Beta", "Beta@MusterMail.com", "+49 89 123456 789", "Muster-Adresse"));
-                _supplierContext.Supplier.Add(new Supplier("00000000-0000-0000-0000-000000000002", "Gamma", "Gamma@MusterMail.com", "+49 89 123456 789", "Muster-Adresse"));
-                _supplierContext.Supplier.Add(new Supplier("00000000-0000-0000-0000-000000000003", "Omega", "Omega@MusterMail.com", "+49 89 123456 789", "Muster-Adresse"));
-                _supplierContext.Supplier.Add(new Supplier("00000000-0000-0000-0000-000000000004", "Epsylon", "Epsylon@MusterMail.com", "+49 89 123456 789", "Muster-Adresse"));
-                _supplierContext.SaveChanges();
-            }
-
-            if (_supplierContext.Product.Count() == 0)
-            {
-                _supplierContext.Product.Add(new Product("00000000-0000-0000-0000-000000000000", "00000000-0000-0000-0000-000000000001", Color.green, 12.0, "Produkt_1", "Ich bin Produkt_1", 100));
-                _supplierContext.Product.Add(new Product("00000000-0000-0000-0000-000000000001", "00000000-0000-0000-0000-000000000002", Color.blue, 43.0, "Produkt_2", "Ich bin Produkt_2", 50));
-                _supplierContext.Product.Add(new Product("00000000-0000-0000-0000-000000000002", "00000000-0000-0000-0000-000000000003", Color.red, 100.0, "Produkt_3", "Ich bin Produkt_3", 25));
-                _supplierContext.SaveChanges();
-            }
         }
 
         /// <summary>

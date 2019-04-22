@@ -1,0 +1,2 @@
+obj\Debug\netstandard2.0/SupplierServiceGRPC.cs \
+obj\Debug\netstandard2.0/SupplierServiceGRPCGrpc.cs: SupplierServiceGRPC.proto

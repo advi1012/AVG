@@ -1,0 +1,180 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": "d80f0fd8bbef78765cbaa8b0b9ba4fb91f88d56b"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "SupplierClientGRPC/1.0.0": {
+        "dependencies": {
+          "SupplierServiceGRPC": "1.0.0"
+        },
+        "runtime": {
+          "SupplierClientGRPC.dll": {}
+        }
+      },
+      "Google.Protobuf/3.7.0": {
+        "runtime": {
+          "lib/netstandard1.0/Google.Protobuf.dll": {
+            "assemblyVersion": "3.7.0.0",
+            "fileVersion": "3.7.0.0"
+          }
+        }
+      },
+      "Grpc/1.20.0": {
+        "dependencies": {
+          "Grpc.Core": "1.20.0"
+        }
+      },
+      "Grpc.Core/1.20.0": {
+        "dependencies": {
+          "Grpc.Core.Api": "1.20.0",
+          "System.Interactive.Async": "3.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Grpc.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.20.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux/native/libgrpc_csharp_ext.x64.so": {
+            "rid": "linux",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux/native/libgrpc_csharp_ext.x86.so": {
+            "rid": "linux",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/native/grpc_csharp_ext.x64.dll": {
+            "rid": "win",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/native/grpc_csharp_ext.x86.dll": {
+            "rid": "win",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Grpc.Core.Api/1.20.0": {
+        "dependencies": {
+          "System.Interactive.Async": "3.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Grpc.Core.Api.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.20.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.2": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.2.23222"
+          }
+        }
+      },
+      "System.Interactive.Async/3.2.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.Interactive.Async.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.702"
+          }
+        }
+      },
+      "AvG Abgabe 1 - Webapp/1.0.0": {
+        "dependencies": {
+          "SupplierServiceGRPC": "1.0.0"
+        },
+        "runtime": {
+          "AvG Abgabe 1 - Webapp.dll": {}
+        }
+      },
+      "SupplierServiceGRPC/1.0.0": {
+        "dependencies": {
+          "Google.Protobuf": "3.7.0",
+          "Grpc": "1.20.0",
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "runtime": {
+          "SupplierServiceGRPC.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SupplierClientGRPC/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Google.Protobuf/3.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OvssyqQTrpJgdH4fjztsCV9AhUo9jgGpDbZ5XAAqC+X6MIUsifHk8Woeom1HXlHdqo/XebiEMpYySE9AxybJ9g==",
+      "path": "google.protobuf/3.7.0",
+      "hashPath": "google.protobuf.3.7.0.nupkg.sha512"
+    },
+    "Grpc/1.20.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qmMNHeKJRbiC5YnSBOzE9Vnq69wHi3IQhgX+/Nw+RETyqv7ACflj9rP2UpXQ+cAZ9rj3CZY8hVYorXWi1T78YQ==",
+      "path": "grpc/1.20.0",
+      "hashPath": "grpc.1.20.0.nupkg.sha512"
+    },
+    "Grpc.Core/1.20.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SM0RuYh65FvbXsCqkCLRi7wMP+GDgFgZb0KfEH55HoPy3ZdruJAR/vZGbn5DdqXUBDerjeOOeJLSMG0x0Mao7A==",
+      "path": "grpc.core/1.20.0",
+      "hashPath": "grpc.core.1.20.0.nupkg.sha512"
+    },
+    "Grpc.Core.Api/1.20.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Zryx01RkLPMV4S2k2prKVgAJZR8goi09cZS52SbFs7Xak977WxjqrHTzmD3miCUo+aj/AnVDbYnauUe8ePOGHw==",
+      "path": "grpc.core.api/1.20.0",
+      "hashPath": "grpc.core.api.1.20.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
+      "path": "newtonsoft.json/12.0.2",
+      "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
+    },
+    "System.Interactive.Async/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-C07p0dAA5lGqYUPiPCK3paR709gqS4aMDDsje0v0pvffwzLaxmsn5YQTfZbyNG5qrudPx+BCxTqISnncQ3wIoQ==",
+      "path": "system.interactive.async/3.2.0",
+      "hashPath": "system.interactive.async.3.2.0.nupkg.sha512"
+    },
+    "AvG Abgabe 1 - Webapp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SupplierServiceGRPC/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

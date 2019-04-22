@@ -1,0 +1,9 @@
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServiceGRPC\bin\Debug\netstandard2.0\SupplierServiceGRPC.deps.json
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServiceGRPC\bin\Debug\netstandard2.0\SupplierServiceGRPC.dll
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServiceGRPC\obj\Debug\netstandard2.0\SupplierServiceGRPC.csprojAssemblyReference.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServiceGRPC\obj\Debug\netstandard2.0\SupplierServiceGRPC.csproj.CoreCompileInputs.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServiceGRPC\obj\Debug\netstandard2.0\SupplierServiceGRPC.AssemblyInfoInputs.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServiceGRPC\obj\Debug\netstandard2.0\SupplierServiceGRPC.AssemblyInfo.cs
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServiceGRPC\bin\Debug\netstandard2.0\SupplierServiceGRPC.pdb
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServiceGRPC\obj\Debug\netstandard2.0\SupplierServiceGRPC.dll
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServiceGRPC\obj\Debug\netstandard2.0\SupplierServiceGRPC.pdb

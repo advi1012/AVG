@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using AvG_Abgabe_1___Webapp.Controllers;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
+using SupplierServiceGRPC;
 
 namespace AvG_Abgabe_1___Webapp.Model
 {
@@ -133,5 +134,18 @@ namespace AvG_Abgabe_1___Webapp.Model
 
             return Klon;
         }
+
+        // Für gRPC-generierten Code
+        public PreferredSupplier ToPrefferedSupplier()
+        {
+            PreferredSupplier result = new PreferredSupplier();
+            result.Id = this.id;
+            result.Name = this.name; 
+            result.Email = this.email;
+            result.Phone = this.phone;
+            result.Address = this.address;
+
+            return result;
+    }
     }
 }

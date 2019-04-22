@@ -1,0 +1,86 @@
+﻿syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.SupplierServiceGRPC";
+option java_outer_classname = "SupplierServiceGRPCProto";
+option objc_class_prefix = "SSG";
+
+package SupplierServiceGRPC;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  // Sends another greeting
+  rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+  
+  // Shows all suppliers in store
+  rpc FindAllSuppliers (Empty) returns (stream PreferredSupplier) {}
+
+  // Shows all products in store
+  rpc FindAllProducts (Empty) returns (stream ProductRequest) {}
+
+  // Implementation of LIST(Suppliers) findAllPreferredSuppliers
+  rpc FindAllPreferredSuppliers (Empty) returns (stream PreferredSupplier) {}
+
+  // Implementation of Supplier findPreferredSupplier(Product p)
+  rpc FindPreferredSupplier (ProductRequest) returns (PreferredSupplier) {}
+
+  // Implementation of void setPreferredSupplierForProduct(Supplier s, Product c)
+  //	throws UnknownSupplierException, UnknownProductException
+  rpc setPreferredSupplierForProduct (setPreferredSupplierForProductRequest) returns (Empty) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+
+// The request message containing the preferred supplier id of a product
+message ProductRequest {
+	 string id = 1;
+     string preferredsupplier = 2;
+	 string name = 3;
+     double price = 4;
+	 Color color = 5;
+     string description = 6;
+     int32 currentStock = 7;
+
+	 enum Color {
+		OTHERS = 0;
+        BLUE = 1;
+        GREEN = 2;
+        WHITE = 3;
+        BLACK = 4;
+        YELLOW = 5;
+        PURPLE = 6;
+        GREY = 7;
+        BROWN = 8;
+        RED = 9;
+	 }
+}
+
+// The response message containing the preferred suppliers of a product
+message PreferredSupplier {
+	 string id = 1;
+     string name = 2;
+     string email = 3;
+     string phone = 4;
+     string address = 5;
+}
+
+// The request message for 'setPreferredSupplierForProduct' 
+message setPreferredSupplierForProductRequest {
+	PreferredSupplier prefSupplier = 1;
+	ProductRequest productReq = 2;
+}
+
+// Necessary Placeholder for empty messages
+message Empty {
+	int32 info = 1;
+}

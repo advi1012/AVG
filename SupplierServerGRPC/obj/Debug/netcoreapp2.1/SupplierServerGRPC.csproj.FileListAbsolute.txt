@@ -1,0 +1,16 @@
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\bin\Debug\netcoreapp2.1\SupplierServerGRPC.deps.json
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\bin\Debug\netcoreapp2.1\SupplierServerGRPC.runtimeconfig.json
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\bin\Debug\netcoreapp2.1\SupplierServerGRPC.runtimeconfig.dev.json
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\bin\Debug\netcoreapp2.1\SupplierServerGRPC.dll
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\bin\Debug\netcoreapp2.1\SupplierServerGRPC.pdb
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\obj\Debug\netcoreapp2.1\SupplierServerGRPC.csprojAssemblyReference.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\obj\Debug\netcoreapp2.1\SupplierServerGRPC.csproj.CoreCompileInputs.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\obj\Debug\netcoreapp2.1\SupplierServerGRPC.AssemblyInfoInputs.cache
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\obj\Debug\netcoreapp2.1\SupplierServerGRPC.AssemblyInfo.cs
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\obj\Debug\netcoreapp2.1\SupplierServerGRPC.dll
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\obj\Debug\netcoreapp2.1\SupplierServerGRPC.pdb
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\bin\Debug\netcoreapp2.1\SupplierServiceGRPC.dll
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\bin\Debug\netcoreapp2.1\SupplierServiceGRPC.pdb
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\obj\Debug\netcoreapp2.1\SupplierServerGRPC.csproj.CopyComplete
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\bin\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.dll
+C:\Users\Luke Noobwalker\Desktop\C# Projekte\AVG\SupplierServerGRPC\bin\Debug\netcoreapp2.1\AvG Abgabe 1 - Webapp.pdb

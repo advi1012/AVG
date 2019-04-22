@@ -63,7 +63,7 @@ namespace AvG_Abgabe_1___Webapp.Controllers
                     return success;
                 }
 
-                // falls keine oder falsche Queryparameter angegeben werden: Gib alle zurück (nicht verlangt)
+                // falls keine oder falsche Queryparameter angegeben werden: Gib alle preferred suppliers zurück 
                 var list = _supplierservice.findAllPreferredSuppliers();
                 if (list.Count() > 0)
                 {
@@ -81,7 +81,7 @@ namespace AvG_Abgabe_1___Webapp.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, Constants.INTERNAL_SERVER_ERROR);
+                return StatusCode(500, Constants.INTERNAL_SERVER_ERROR + ": " + e.Message);
             }
         }
 
@@ -128,7 +128,7 @@ namespace AvG_Abgabe_1___Webapp.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, Constants.INTERNAL_SERVER_ERROR);
+                return StatusCode(500, Constants.INTERNAL_SERVER_ERROR + ": " + e.Message);
             }
         }
 
