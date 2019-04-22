@@ -4,6 +4,11 @@
 >
 > Näheres zu Markdown gibt es in einem [Wiki](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 ## Server starten/ schließen
+Builde das Projekt:
+```CMD
+dotnet build '.\AvG - Abgabe 1.sln'
+```
+
 Mit 'strg'  F5 kann der Server gestartet werden (, allerdings muss der Reiter auf die Webapp verweisen).
 Alternativ kann auch die graphische Oberfläche genutzt werden (der grüne Pfeil).
 Der Server kann geschlossen werden, indem man im oder neben dem System Tray (bei Windows standardmäßig unten rechts auf den Bildschirm) 
